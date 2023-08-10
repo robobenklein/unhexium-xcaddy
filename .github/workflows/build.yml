@@ -6,8 +6,6 @@ jobs:
     runs-on: ubuntu-22.04
     steps:
       - uses: actions/setup-go@v4
-        with:
-          cache-dependency-path: $GOPATH
 
       - run: go env GOPATH
 
