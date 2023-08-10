@@ -1,0 +1,12 @@
+name: Build custom caddy
+on: [push, workflow_dispatch]
+jobs:
+  xcaddy-with-cloudflare:
+    name: Build xcaddy with cloudflare ddns
+    runs-on: ubuntu-22.04
+    steps:
+      - uses: actions/setup-go@v4
+
+      - run: go install github.com/caddyserver/xcaddy/cmd/xcaddy@latest
+
+      - run: xcaddy build --with github.com/caddy-dns/cloudflare
