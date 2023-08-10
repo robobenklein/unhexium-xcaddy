@@ -14,10 +14,12 @@ jobs:
       - run: echo "CADDY_VERSION='$(./caddy version)'" | tee -a "$GITHUB_ENV"
 
       - run: echo "CADDY_SHORTVER='$(echo $CADDY_VERSION | cut -f 1 -d ' ')'" | tee -a "$GITHUB_ENV"
-      
-      - name: GitHub Tag
-        uses: mathieudutour/github-tag-action@v6.1
+
+      - uses: mathieudutour/github-tag-action@v6.1
         id: tag_version
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+
 
       - uses: softprops/action-gh-release@v1
         #if: startsWith(github.ref, 'refs/tags/')
