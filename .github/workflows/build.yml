@@ -13,9 +13,9 @@ jobs:
 
       - run: xcaddy build --with github.com/caddy-dns/cloudflare
 
-      - run: echo "CADDY_VERSION='$(./caddy version)'" | tee -a "$GITHUB_ENV"
+      - run: echo "CADDY_VERSION=$(./caddy version)" | tee -a "$GITHUB_ENV"
 
-      - run: echo "CADDY_SHORTVER='$(echo $CADDY_VERSION | cut -f 1 -d ' ')'" | tee -a "$GITHUB_ENV"
+      - run: echo "CADDY_SHORTVER=$(echo $CADDY_VERSION | cut -f 1 -d ' ')" | tee -a "$GITHUB_ENV"
 
       - uses: mathieudutour/github-tag-action@v6.1
         id: tag_version
@@ -26,5 +26,7 @@ jobs:
         #if: startsWith(github.ref, 'refs/tags/')
         with:
           files: caddy
-          name: ${{ env.CADDY_VERSION }}
+          name: ${{ env.CADDY_SHORTVER }}
+          append_body: true
+          body: "built version: ${{ env.CADDY_VERSION }}"
           tag_name: ${{ steps.tag_version.outputs.new_tag }}
