@@ -11,4 +11,4 @@ jobs:
 
       - run: xcaddy build --with github.com/caddy-dns/cloudflare
 
-      - run: echo "CADDY_VERSION='$(./caddy version)'" >> "$GITHUB_ENV"
+      - run: echo "CADDY_VERSION='$(./caddy version)'" | tee -a "$GITHUB_ENV"
