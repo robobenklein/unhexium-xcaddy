@@ -6,6 +6,10 @@ jobs:
     runs-on: ubuntu-22.04
     steps:
       - uses: actions/setup-go@v4
+        with:
+          cache-dependency-path: $GOPATH
+
+      - run: go env GOPATH
 
       - run: go install github.com/caddyserver/xcaddy/cmd/xcaddy@latest
 
@@ -20,10 +24,9 @@ jobs:
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
 
-
       - uses: softprops/action-gh-release@v1
         #if: startsWith(github.ref, 'refs/tags/')
         with:
           files: caddy
           name: $CADDY_VERSION
-          tag: ${{ steps.tag_version.outputs.new_tag }}
+          tag_name: ${{ steps.tag_version.outputs.new_tag }}
