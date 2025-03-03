@@ -11,7 +11,7 @@ jobs:
 
       - run: go install github.com/caddyserver/xcaddy/cmd/xcaddy@latest
 
-      - run: xcaddy build --with github.com/caddy-dns/cloudflare
+      - run: xcaddy build --with github.com/caddy-dns/cloudflare --with github.com/WeidiDeng/caddy-cloudflare-ip
 
       - run: echo "CADDY_VERSION=$(./caddy version)" | tee -a "$GITHUB_ENV"
 
