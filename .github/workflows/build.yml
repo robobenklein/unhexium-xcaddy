@@ -5,7 +5,7 @@ jobs:
     name: Build xcaddy with cloudflare ddns
     runs-on: ubuntu-22.04
     steps:
-      - uses: actions/setup-go@v4
+      - uses: actions/setup-go@v5
 
       - run: go env GOPATH
 
